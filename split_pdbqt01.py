@@ -1,5 +1,5 @@
 """
-split_pdbqt.py v1.0
+split_pdbqt.py v1.01
 Copyright (C) 2023 Zekeriya DUZGUN
 
 Bu script, belirtilen giriş dosyasını okur ve her MODEL-ENDMDL bloğunu ayrı bir dosya olarak kaydeder. 
