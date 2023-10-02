@@ -31,7 +31,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
 import os
 import re
 import sys
@@ -47,33 +46,37 @@ def extract_models(input_file):
     written_count = 0
     duplicate_count = 0
 
-    with open(input_file) as file:
-        content = file.read()
-        blocks = content.split('MODEL')
-        for block in blocks[1:]:
-            block = 'MODEL' + block
-            model_count += 1
-            zinc_name = re.search(r'ZINC\d+', block)
-            if zinc_name:
-                zinc_name = zinc_name.group()
-                output_file = os.path.join(output_dir, f'{zinc_name}.pdbqt')
-                if os.path.exists(output_file):
-                    duplicate_count += 1
-                    output_file = os.path.join(dupl_dir, f'{zinc_name}.pdbqt')
-                try:
-                    with open(output_file, 'w') as out_file:
-                        out_file.write(block)
-                    written_count += 1
-                except Exception as e:
-                    print(f"Error writing file {output_file}: {e}")
+    try:
+        with open(input_file) as file:
+            content = file.read()
+            blocks = content.split('MODEL')
+            for block in blocks[1:]:
+                lines = block.split('\n')[1:]  # ilk satırı atla
+                block = '\n'.join(lines).replace('ENDMDL', '')  # ENDMDL'yi kaldır
+                model_count += 1
+                zinc_name = re.search(r'ZINC\d+', block)
+                if zinc_name:
+                    zinc_name = zinc_name.group()
+                    output_file = os.path.join(output_dir, f'{zinc_name}.pdbqt')
+                    if os.path.exists(output_file):
+                        duplicate_count += 1
+                        output_file = os.path.join(dupl_dir, f'{zinc_name}.pdbqt')
+                    try:
+                        with open(output_file, 'w') as out_file:
+                            out_file.write(block)
+                        written_count += 1
+                    except Exception as e:
+                        print(f"Error writing file {output_file}: {e}")
 
-    print(f"Total Models: {model_count}")
-    print(f"Written Models: {written_count}")
-    print(f"Duplicate Models: {duplicate_count}")
-    print("Extraction completed.")
+        print(f"Total Models: {model_count}")
+        print(f"Written Models: {written_count}")
+        print(f"Duplicate Models: {duplicate_count}")
+        print("Extraction completed.")
+    except Exception as e:
+        print(f"Error reading file {input_file}: {e}")
 
-# Komut satırından dosya adını al
-if len(sys.argv) > 1:
-    extract_models(sys.argv[1])
-else:
-    print("Usage: python script.py <input_file>")
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        extract_models(sys.argv[1])
+    else:
+        print("Usage: python script.py <input_file>")
