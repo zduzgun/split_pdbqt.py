@@ -5,7 +5,7 @@ Copyright (C) 2023 Zekeriya DUZGUN
 Bu script, belirtilen giriş dosyasını okur ve her MODEL-ENDMDL bloğunu ayrı bir dosya olarak kaydeder. 
 Her blok için, ZINC ile başlayan kelime dosya adı olarak kullanılır. 
 Eğer aynı isimde bir dosya zaten mevcutsa, dosya "dupl" adlı bir klasör içine kaydedilir. 
-Çıktı klasörünün adı giriş dosyasının adı ile aynıdır (uzantı hariç).
+Eğer yeni oluşturulan klasörde 20000 altında dosya varsa 20000 olacak şekilde PART1..PART30 şeklinde düzenler.
 
 Kullanım:
     python3 split_pdbqt_3.py
@@ -14,7 +14,6 @@ Kullanım:
 Not:
 - Çıktı dosyaları, "input" adlı bir klasör içinde ve "dupl" adlı bir alt klasör içinde oluşturulur.
 - Script, toplam model sayısını, yazılan model sayısını ve çift model sayısını yazdırır.
-- Eğer yeni oluşturulan klasörde 20000 altında dosya varsa 20000 olacak şekilde PART1..PART30 şeklinde düzenler.
 - Bu kod, mevcut dizindeki tüm .pdbqt uzantılı dosyaları bulur ve her biri için extract_models fonksiyonunu çağırır.
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
