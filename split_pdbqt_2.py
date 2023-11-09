@@ -8,7 +8,7 @@ Eğer aynı isimde bir dosya zaten mevcutsa, dosya "dupl" adlı bir klasör içi
 Her klasörde 20000 dosya oalcak şekilde PART01..999 şeklinde bölüştürür.
 
 Kullanım:
-    python3 split_pdbqt_3.py
+    python3 split_pdbqt_2.py
 
 
 Not:
