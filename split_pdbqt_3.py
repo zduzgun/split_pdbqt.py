@@ -5,7 +5,7 @@ Copyright (C) 2023 Zekeriya DUZGUN
 Bu script, belirtilen giriş dosyasını okur ve her MODEL-ENDMDL bloğunu ayrı bir dosya olarak kaydeder. 
 Her blok için, ZINC ile başlayan kelime dosya adı olarak kullanılır. 
 Eğer aynı isimde bir dosya zaten mevcutsa, dosya "dupl" adlı bir klasör içine kaydedilir. 
-Eğer yeni oluşturulan klasörde 20000 altında dosya varsa 20000 olacak şekilde PART1..PART30 şeklinde düzenler.
+Her klasörde 20000 dosya oalcak şekilde PART01..999 şeklinde bölüştürür.
 
 Kullanım:
     python3 split_pdbqt_3.py
